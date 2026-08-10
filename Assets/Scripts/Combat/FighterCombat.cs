@@ -54,18 +54,66 @@ public class FighterCombat : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        lightPunch = playerInput.actions["LightPunch"];
-        heavyPunch = playerInput.actions["HeavyPunch"];
-        lightKick = playerInput.actions["LightKick"];
-        heavyKick = playerInput.actions["HeavyKick"];
-        crouchJab = playerInput.actions["CrouchJab"];
-        special = playerInput.actions["Special"];
+    }
+
+    private void OnEnable()
+    {
+        // Bind here (and again in Start) so we can see/log the live map after
+        // PlayerInput has had a chance to enable it and pair devices. The
+        // InputAction C# reference itself is fine if grabbed in Awake — what
+        // matters is that the map is enabled and paired before Update polls it.
+        BindActions();
         attackEnableAtTime = Time.time + 0.25f;
+    }
+
+    private void Start()
+    {
+        // Second bind + diagnostic: enabled/devices are what prove the
+        // join → action-map handoff actually completed (Input Debugger equivalent).
+        BindActions();
+
+        if (moveLibrary == null)
+            Debug.LogWarning($"[FighterCombat] P{playerInput.playerIndex + 1}: MoveLibrary is not assigned.");
+        if (lightPunch == null)
+            Debug.LogWarning($"[FighterCombat] P{playerInput.playerIndex + 1}: LightPunch action missing — check PlayerControls.");
+        else
+            Debug.Log($"[FighterCombat] P{playerInput.playerIndex + 1} ready " +
+                      $"(LightPunch enabled={lightPunch.enabled}, devices={playerInput.devices.Count})");
     }
 
     private void OnDisable()
     {
+        lightPunch = null;
+        heavyPunch = null;
+        lightKick = null;
+        heavyKick = null;
+        crouchJab = null;
+        special = null;
         DestroyHitboxVisual();
+    }
+
+    private void BindActions()
+    {
+        if (playerInput == null)
+            playerInput = GetComponent<PlayerInput>();
+        if (playerInput == null || playerInput.actions == null)
+            return;
+
+        InputActionMap map = playerInput.currentActionMap;
+        if (map == null)
+            map = playerInput.actions.FindActionMap("Player", throwIfNotFound: false);
+        if (map == null)
+            return;
+
+        if (!map.enabled)
+            map.Enable();
+
+        lightPunch = map.FindAction("LightPunch", throwIfNotFound: false);
+        heavyPunch = map.FindAction("HeavyPunch", throwIfNotFound: false);
+        lightKick = map.FindAction("LightKick", throwIfNotFound: false);
+        heavyKick = map.FindAction("HeavyKick", throwIfNotFound: false);
+        crouchJab = map.FindAction("CrouchJab", throwIfNotFound: false);
+        special = map.FindAction("Special", throwIfNotFound: false);
     }
 
     private void Update()
@@ -93,8 +141,14 @@ public class FighterCombat : MonoBehaviour
     /// </summary>
     public bool TryStartMove(string moveId)
     {
-        if (phase != CombatPhase.Idle || moveLibrary == null || string.IsNullOrEmpty(moveId))
+        if (phase != CombatPhase.Idle || string.IsNullOrEmpty(moveId))
             return false;
+
+        if (moveLibrary == null)
+        {
+            Debug.LogWarning("[FighterCombat] Cannot start move — MoveLibrary is not assigned on the prefab.");
+            return false;
+        }
 
         MoveDefinition move = moveLibrary.GetById(moveId);
         if (move == null)
@@ -145,6 +199,9 @@ public class FighterCombat : MonoBehaviour
     {
         if (Time.time < attackEnableAtTime)
             return;
+
+        if (lightPunch == null)
+            BindActions();
 
         // Face buttons first so a chord doesn't always prefer Special.
         if (lightPunch != null && lightPunch.WasPressedThisFrame())
