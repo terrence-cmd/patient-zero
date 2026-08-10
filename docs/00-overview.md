@@ -31,4 +31,4 @@ Fighting games are an unusually good stress test for this whole
 environment, because they're uniquely punishing about frame timing —
 more than almost any other genre. That sensitivity is what actually
 determines where tools like WebGL or cloud streaming stop being viable
-(see `02-deployment-strategy.md`), rather than it being a guess.
+(see [02-deployment-strategy.md](02-deployment-strategy.md)), rather than it being a guess.

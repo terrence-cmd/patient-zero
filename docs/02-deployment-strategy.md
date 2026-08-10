@@ -31,7 +31,7 @@ what the genre needs. This ruled the option out on more than cost grounds.
 WebGL is fine for early prototyping and sharing, but browser GC stalls and
 less predictable frame timing make it unsuitable for real fighting-game
 development once frame-perfect combat systems (frame data, hitstun,
-combos) are in play — see `00-overview.md`, Gate 1. From that point on,
+combos) are in play — see [00-overview.md](00-overview.md), Gate 1. From that point on,
 **Desktop becomes the actual dev/test target**, and WebGL demotes to a
 "share for feedback" convenience build, not where development happens.
 

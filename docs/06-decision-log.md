@@ -73,7 +73,7 @@ for the topic-organized version.
     scoped to exactly 5 things (bucket, OAC, distribution, bucket policy,
     deploy-only IAM policy), explicitly excluding WAF/custom domains/
     Route 53/flat-rate plans/HA territory.
-24. **Fable 5 brief written:** `fable5-task-brief-gate0.md` — a
+24. **Fable 5 brief written:** [fable5-task-brief-gate0.md](../fable5-task-brief-gate0.md) — a
     destination-plus-boundaries brief (not a checklist), with the 7
     acceptance criteria and an explicit out-of-scope list.
 25. **Fable 5 brief optimized:** added the budget guardrail (stop after

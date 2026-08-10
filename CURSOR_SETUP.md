@@ -1,12 +1,12 @@
 # Getting Cursor Up and Running
 
-Cursor is optional, not required — per `docs/01-environment-setup.md`,
+Cursor is optional, not required — per [docs/01-environment-setup.md](docs/01-environment-setup.md),
 AI-assisted tools sit on top of the same codebase and can be toggled off
 for normal hand-coding at any time, same project, same files. This
 document is for when you *do* want it, specifically for the QA pass
-defined in `cursor-qa-brief-gate0.md`.
+defined in [cursor-qa-brief-gate0.md](cursor-qa-brief-gate0.md).
 
-**Read `INTEGRITY.md` before this, not after.** This document hands you
+**Read [INTEGRITY.md](INTEGRITY.md) before this, not after.** This document hands you
 the actual tool that makes The Magic Box Trap possible in the first
 place. Installing Cursor without already knowing what that trap is and
 how to avoid it is exactly backwards — like being handed a lever before
@@ -27,7 +27,7 @@ These are two unrelated sign-ins. Having one doesn't give you the other.
 ## Install
 
 Worth knowing, in the interest of the same honesty this repo tries to
-practice everywhere else: unlike `UNITY_INSTALL.md`, these steps aren't
+practice everywhere else: unlike [UNITY_INSTALL.md](UNITY_INSTALL.md), these steps aren't
 distilled from a real install session that hit actual failure modes —
 Unity's install genuinely fought back and every failure documented there
 really happened. Cursor's install is normally far less eventful (it's a
@@ -51,12 +51,12 @@ working around quietly.
 2. Open the cloned folder in Cursor.
 3. Nothing else to do here — `.cursor/rules/patient-zero-qa.mdc` loads
    automatically on every request in this repo. It points Cursor at
-   `INTEGRITY.md` and `cursor-qa-brief-gate0.md` and states the standing
+   [INTEGRITY.md](INTEGRITY.md) and [cursor-qa-brief-gate0.md](cursor-qa-brief-gate0.md) and states the standing
    rules (no scope creep, verify claimed successes, the two different
    commit-attribution systems) without you having to paste anything in
    manually or remember to bring it up.
-4. Still worth doing yourself, though: actually read `INTEGRITY.md` and
-   `cursor-qa-brief-gate0.md` in full, not just letting Cursor read them.
+4. Still worth doing yourself, though: actually read [INTEGRITY.md](INTEGRITY.md) and
+   [cursor-qa-brief-gate0.md](cursor-qa-brief-gate0.md) in full, not just letting Cursor read them.
    Start using the `Authorship:` trailer from your very first commit in
    this project, not once you feel ready for it — there's no version of
    "ready" that comes before actually doing it.
@@ -64,7 +64,7 @@ working around quietly.
 ## Free vs. Pro vs. beyond — what you actually get
 
 There's a practical reason to care about The Magic Box Trap beyond the
-pedagogy in `INTEGRITY.md`: **it also burns through your limited
+pedagogy in [INTEGRITY.md](INTEGRITY.md): **it also burns through your limited
 requests faster.** Someone who understands what they actually need asks
 one precise question and gets one useful answer. Someone who's fallen
 into treating Cursor as a magic box tends to flail — vague prompts,

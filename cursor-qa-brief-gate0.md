@@ -3,9 +3,9 @@
 ## Context
 
 Gate 0 (Unity environment, both build profiles, 2-player local input) was
-built by Fable 5 from `fable5-task-brief-gate0.md`, then further built on
+built by Fable 5 from [fable5-task-brief-gate0.md](fable5-task-brief-gate0.md), then further built on
 and tested against the live AWS pipeline outside of Cursor. Per
-`docs/05-build-pipeline.md`, this QA pass is **Piece 3** of the build
+[docs/05-build-pipeline.md](docs/05-build-pipeline.md), this QA pass is **Piece 3** of the build
 structure — deliberately a separate, independent reviewer, specifically
 because a builder's own self-verification misses things a fresh reviewer
 catches. You are that fresh reviewer. You are not building anything new.
@@ -132,7 +132,7 @@ clean, but given who's coming next, a second independent pass matters:
 - Re-scan the full repo history (not just current files) for anything
   that looks like a credential, access key, account ID, or personal
   info — `git log -p` or equivalent, not just a working-tree grep.
-- Confirm the out-of-scope boundaries from `fable5-task-brief-gate0.md`
+- Confirm the out-of-scope boundaries from [fable5-task-brief-gate0.md](fable5-task-brief-gate0.md)
   actually hold in the shipped code — no AWS config, no networking/
   netcode, no combat system beyond the placeholder capsule, nothing
   beyond what the acceptance criteria list.
@@ -175,6 +175,7 @@ this brief, stop and flag it in the report instead.
   (pinned LTS, already installed — do not reinstall or change version)
 - Repo root / project path: this directory
   (`C:\Users\tocam\Documents\GameDev\patient-zero`)
-- AWS targets already provisioned are tracked in `PROVISIONED_TARGETS.md`
-  — read-only reference, not something to modify here
+- AWS targets already provisioned are tracked in
+  [PROVISIONED_TARGETS.md](PROVISIONED_TARGETS.md) — read-only
+  reference, not something to modify here
 - Platform is Windows; PowerShell for anything outside C#/Unity

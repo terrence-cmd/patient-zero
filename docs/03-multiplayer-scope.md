@@ -31,7 +31,7 @@ locked scope.
 ## Where this connects to Gate 1
 
 The 2-player local input wiring is part of Gate 1's acceptance criteria
-(see `fable5-task-brief-gate0.md`) — join-in-progress via gamepad, two
+(see [fable5-task-brief-gate0.md](../fable5-task-brief-gate0.md)) — join-in-progress via gamepad, two
 distinct characters spawn, no split-screen, no networking. This is local
 input only; anything about *online* multiplayer is Gate 3 territory, not
 this.

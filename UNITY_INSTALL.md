@@ -40,7 +40,7 @@ out why, instead of being stuck.
 ## The pinned version
 
 This project targets **Unity 6000.3.21f1** (LTS). Don't install "latest"
-— see `docs/01-environment-setup.md` for why a pinned version matters.
+— see [docs/01-environment-setup.md](docs/01-environment-setup.md) for why a pinned version matters.
 If this project ever moves to a newer LTS, update this document's
 version number and changeset (see "Finding the changeset" below) at the
 same time.

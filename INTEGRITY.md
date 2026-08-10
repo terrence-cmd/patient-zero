@@ -3,7 +3,7 @@
 ## The actual goal of this environment
 
 Everything in this repo — the AI-assisted tools, the "hand-coding stays
-supported" toggle from `docs/01-environment-setup.md`, all of it — exists
+supported" toggle from [docs/01-environment-setup.md](docs/01-environment-setup.md), all of it — exists
 to build one thing: your actual, real skill. Not a working game with your
 name on it. Not a repo that looks impressive. Your own growing ability to
 build things. A finished game that you didn't really build is worth
@@ -20,10 +20,10 @@ environment is built to teach all of them:
   repo: `TwoPlayerJoinController.cs`.
 - **The build/deploy pipeline** — understanding how source code actually
   becomes a real, running program instead of treating that step as a
-  black box. See `BUILD_AND_DEPLOY.md`.
+  black box. See [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md).
 - **Debugging discipline** — verifying a claimed result instead of
   trusting it, forming a real hypothesis about *why* something broke.
-  Every failure mode in `UNITY_INSTALL.md` is a real example of this.
+  Every failure mode in [UNITY_INSTALL.md](UNITY_INSTALL.md) is a real example of this.
 - **Scoping discipline** — knowing what *not* to build right now, and
   treating that restraint as a real skill, not just a rule someone
   handed you. Every doc in this repo states its own out-of-scope list on
@@ -40,7 +40,7 @@ That's the whole model to hold in your head. A magic box takes nothing
 in and produces something finished — you'd have no real relationship to
 the output at all. An amplifier is different: it takes what's *already
 there* and makes it bigger, faster, more capable. Take the Editor-lock
-issue documented in `BUILD_AND_DEPLOY.md` — if you already understand
+issue documented in [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md) — if you already understand
 *why* a running Unity Editor can conflict with a batch-mode build, AI can
 help you script around it faster, spot a related edge case, suggest a
 cleaner check — real understanding, amplified. If you don't understand
@@ -113,7 +113,7 @@ the ratio of `assisted-learning` to `assisted-understood` shift on the
 same kind of task, and that's not a guess about whether you're
 improving, it's evidence.
 
-This is the same idea from `UNITY_INSTALL.md`, applied one level deeper:
+This is the same idea from [UNITY_INSTALL.md](UNITY_INSTALL.md), applied one level deeper:
 *I can't teach you to code. I can only teach you how to teach yourself,
 and those are two very different things.* Attribution is how you keep
 that distinction real instead of it quietly dissolving over time.
@@ -149,7 +149,7 @@ kind of attribution since before you got here.
 
 **This is not enforced.** No hook blocks a commit without it. That's on
 purpose — the same reason Game Files are a manual process instead of an
-automated one in `GAME_FILE_STORAGE.md`. The discipline of doing this
+automated one in [GAME_FILE_STORAGE.md](GAME_FILE_STORAGE.md). The discipline of doing this
 honestly, on your own, without anything forcing you to, is a real part
 of what's being built here. A rule you can't break isn't teaching you
 anything. A habit you keep on your own is.

@@ -3,9 +3,9 @@
 Three different things, easy to mix up, each covered by a different doc:
 
 - **Working** on a game — editing live in the Unity Editor (this doc
-  doesn't cover this — see `BUILD_AND_DEPLOY.md`)
+  doesn't cover this — see [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md))
 - **Playing** a game — running a build, a `.exe` or a browser URL (also
-  `BUILD_AND_DEPLOY.md`)
+  [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md))
 - **A Game File** — a saved, archived snapshot of a project you can put
   away and come back to later and keep editing. This is what this
   document is about, and right now, nothing else in this project does
@@ -83,7 +83,7 @@ make and costs you nothing to have extras of.
 
 ## How to make one
 
-1. Close the Unity Editor first (same reason as in `BUILD_AND_DEPLOY.md`
+1. Close the Unity Editor first (same reason as in [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md)
    — avoids any file-lock weirdness while archiving).
 2. Open your project folder in File Explorer.
 3. Select `Assets`, `ProjectSettings`, and `Packages` (hold Ctrl and

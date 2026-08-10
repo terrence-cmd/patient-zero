@@ -12,14 +12,14 @@ shared-resource coordination needed.
 ## Why "browser-based development" was rejected (distinct from browser-hosted games)
 
 This took a real clarification. Earlier, "browser-based" had been decided
-for where the *game* runs (see `02-deployment-strategy.md`). This is a
+for where the *game* runs (see [02-deployment-strategy.md](02-deployment-strategy.md)). This is a
 different question: where the *coding* happens.
 
 The Unity **Editor** is a heavy native desktop application — there's no
 lightweight "Unity Editor in a browser tab." The only way to get real
 Editor access through a browser is to stream a full cloud desktop/VM to
 that tab, which quietly reintroduces the same expensive GPU-streaming cost
-tier already rejected in `02-deployment-strategy.md`. Once it was
+tier already rejected in [02-deployment-strategy.md](02-deployment-strategy.md). Once it was
 confirmed everyone has their own capable PC, the answer became simple:
 **local development, full Unity Editor, zero extra cost, inherently
 parallel.**
@@ -52,7 +52,7 @@ This produced a 3-piece (later 4-piece) build structure:
 Declared explicitly and applied to every piece since: **no scope creep,
 under any circumstances.** Each deliverable in this repo states its own
 "out of scope" list as deliberately as its "in scope" list — see
-`fable5-task-brief-gate0.md` and the header comments in each script.
+[fable5-task-brief-gate0.md](../fable5-task-brief-gate0.md) and the header comments in each script.
 
 ## The budget guardrail
 

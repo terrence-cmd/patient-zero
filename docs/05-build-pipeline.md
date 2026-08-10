@@ -31,7 +31,7 @@ This only works because the Fable 5 brief explicitly specifies that exact
 static method contract in its acceptance criteria — the two pieces were
 written independently but deliberately kept in sync on this interface.
 This was checked directly, not assumed: see the comparison recorded in
-`06-decision-log.md`.
+[06-decision-log.md](06-decision-log.md).
 
 ## Piece 3 — why it's a process, not a file
 
@@ -67,4 +67,4 @@ acceptance criteria #1 and #6 (folder scaffold, Git+LFS setup). Rather
 than delete them, they're kept as a manual fallback — if Fable 5 reports a
 blocker specifically on the scaffold or Git step (per the budget
 guardrail), these are ready to run by hand instead of writing something
-from scratch under pressure. See `scripts/legacy/README.md`.
+from scratch under pressure. See [scripts/legacy/README.md](../scripts/legacy/README.md).
