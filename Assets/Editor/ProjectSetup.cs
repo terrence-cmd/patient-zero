@@ -119,6 +119,13 @@ public static class ProjectSetup
         playerInput.actions = actions;
         playerInput.defaultActionMap = "Player";
         temp.AddComponent<PlayerMover>();
+        var combat = temp.AddComponent<FighterCombat>();
+        var moveLibrary = AssetDatabase.LoadAssetAtPath<MoveLibrary>(
+            "Assets/Data/Combat/MoveLibrary_Demo.asset");
+        if (moveLibrary != null)
+            combat.SetMoveLibrary(moveLibrary);
+        else
+            Debug.LogWarning("[ProjectSetup] MoveLibrary_Demo.asset missing — run CombatLibrarySetup first.");
         GameObject prefab = PrefabUtility.SaveAsPrefabAsset(temp, PlayerPrefabPath);
         UnityEngine.Object.DestroyImmediate(temp);
 

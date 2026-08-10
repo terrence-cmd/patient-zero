@@ -11,7 +11,7 @@ using UnityEngine.TestTools;
 /// player object, and joining is capped at 2.
 /// (Hardware-free equivalent of "two gamepads connected, both join".)
 /// </summary>
-public class TwoPlayerJoinTests : InputTestFixture
+public class TwoPlayerJoinTests : PatientZeroInputTestFixture
 {
     [UnityTest]
     public IEnumerator TwoGamepads_BothJoin_EachControlsDistinctPlayer_CapIsTwo()

@@ -141,6 +141,49 @@ public static class CombatLibrarySetup
             EditorApplication.Exit(0);
     }
 
+    /// <summary>
+    /// Patches the existing Player prefab with FighterCombat + demo move library
+    /// without recreating Main (safer than re-running ProjectSetup.ApplyAll).
+    /// </summary>
+    [MenuItem("Patient Zero/Combat/Wire Executable Combat Onto Player Prefab")]
+    public static void WireExecutableCombatOntoPlayerPrefab()
+    {
+        try
+        {
+            const string playerPrefabPath = "Assets/Prefabs/Player.prefab";
+            GameObject prefabRoot = PrefabUtility.LoadPrefabContents(playerPrefabPath);
+            if (prefabRoot == null)
+                throw new System.InvalidOperationException($"Missing prefab at {playerPrefabPath}");
+
+            FighterCombat combat = prefabRoot.GetComponent<FighterCombat>();
+            if (combat == null)
+                combat = prefabRoot.AddComponent<FighterCombat>();
+
+            MoveLibrary library = AssetDatabase.LoadAssetAtPath<MoveLibrary>(MoveLibraryPath);
+            if (library == null)
+                throw new System.InvalidOperationException(
+                    $"Missing {MoveLibraryPath}. Run Create Sample Libraries first.");
+
+            combat.SetMoveLibrary(library);
+            EditorUtility.SetDirty(combat);
+            PrefabUtility.SaveAsPrefabAsset(prefabRoot, playerPrefabPath);
+            PrefabUtility.UnloadPrefabContents(prefabRoot);
+            AssetDatabase.SaveAssets();
+
+            Debug.Log($"[CombatLibrarySetup] Wired FighterCombat + {MoveLibraryPath} onto {playerPrefabPath}");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[CombatLibrarySetup] Wire FAILED: {ex}");
+            if (Application.isBatchMode)
+                EditorApplication.Exit(1);
+            throw;
+        }
+
+        if (Application.isBatchMode)
+            EditorApplication.Exit(0);
+    }
+
     private static void EnsureFolders()
     {
         Directory.CreateDirectory(MovesFolder);

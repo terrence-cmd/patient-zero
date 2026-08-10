@@ -4,10 +4,11 @@ using UnityEngine.InputSystem.Users;
 
 /// <summary>
 /// Caps local join-in-progress at 2 players (shared screen, no split-screen).
-/// PlayerInputManager itself has no player cap; this disables joining once
-/// 2 players are in, and re-enables it if one leaves.
+/// Rejects a 3rd joiner by destroying that player object rather than calling
+/// PlayerInputManager.DisableJoining — DisableJoining + scene teardown can
+/// double-decrement InputUser.listenForUnpairedDeviceActivity and throw.
 /// Also destroys a player's object on mid-session device loss — Input System
-/// does not do that by default, which would leave an orphan and a stuck cap.
+/// does not do that by default, which would leave an orphan and a stuck slot.
 /// Handler names deliberately do NOT match the PlayerInputManager
 /// SendMessages callback names (OnPlayerJoined/OnPlayerLeft) to avoid
 /// double invocation via broadcast + C# event.
@@ -43,22 +44,21 @@ public class TwoPlayerJoinController : MonoBehaviour
 
     private void HandlePlayerJoined(PlayerInput player)
     {
+        // PlayerInputManager already counted this player before the callback.
+        if (manager.playerCount > MaxPlayers)
+        {
+            Debug.Log($"[Join] Rejecting player {player.playerIndex + 1} — cap is {MaxPlayers}.");
+            Destroy(player.gameObject);
+            return;
+        }
+
         Debug.Log($"[Join] Player {player.playerIndex + 1} joined " +
                   $"(devices: {string.Join(", ", player.devices)})");
-        if (manager.playerCount >= MaxPlayers)
-        {
-            manager.DisableJoining();
-            Debug.Log("[Join] 2 players in — joining disabled.");
-        }
     }
 
     private void HandlePlayerLeft(PlayerInput player)
     {
         Debug.Log($"[Join] Player {player.playerIndex + 1} left.");
-        if (manager.playerCount < MaxPlayers)
-        {
-            manager.EnableJoining();
-        }
     }
 
     private void HandleUserChange(InputUser user, InputUserChange change, InputDevice device)
@@ -67,8 +67,7 @@ public class TwoPlayerJoinController : MonoBehaviour
             return;
 
         // Find the PlayerInput still bound to this user and remove it. Destroying
-        // the GameObject is what makes PlayerInputManager fire onPlayerLeft
-        // (which re-enables joining via HandlePlayerLeft).
+        // the GameObject is what makes PlayerInputManager fire onPlayerLeft.
         foreach (var player in PlayerInput.all)
         {
             if (player.user == user)

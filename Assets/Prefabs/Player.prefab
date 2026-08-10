@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 787160836716974921}
   - component: {fileID: 3955141874273929967}
   - component: {fileID: 4226688270660021649}
+  - component: {fileID: 5240340306958183126}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -158,3 +159,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMover
   speed: 6
+--- !u!114 &5240340306958183126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756904890267726282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e96e32b67620a444901249aba8132fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PatientZero.Runtime::FighterCombat
+  moveLibrary: {fileID: 11400000, guid: a7da1e712cc67364f8e9b3d709f77959, type: 2}
+  hurtboxSize: {x: 1, y: 2}
+  feetOffsetY: 1
+  drawHitbox: 1

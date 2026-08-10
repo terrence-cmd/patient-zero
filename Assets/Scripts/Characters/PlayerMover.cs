@@ -19,11 +19,13 @@ public class PlayerMover : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputAction moveAction;
+    private FighterCombat combat;
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
+        combat = GetComponent<FighterCombat>();
     }
 
     private void Start()
@@ -45,6 +47,10 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
+        // Attacks and hitstun lock movement so frame data is readable on-screen.
+        if (combat != null && combat.LocksMovement)
+            return;
+
         Vector2 move = moveAction.ReadValue<Vector2>();
         Vector3 delta = new Vector3(move.x, 0f, move.y) * (speed * Time.deltaTime);
         transform.Translate(delta, Space.World);
