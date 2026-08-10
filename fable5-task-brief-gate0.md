@@ -1,4 +1,4 @@
-# Task Brief: Fighter Project — Gate 0 Environment Build
+# Task Brief: Patient Zero — Gate 0 Environment Build
 
 ## Context
 

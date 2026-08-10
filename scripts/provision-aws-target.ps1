@@ -32,8 +32,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 $AccountId = (aws sts get-caller-identity --query Account --output text)
-$BucketName = "fighter-webgl-$($PersonName.ToLower())-$AccountId"
-$DistributionComment = "fighter-webgl-$PersonName"
+$BucketName = "patient-zero-webgl-$($PersonName.ToLower())-$AccountId"
+$DistributionComment = "patient-zero-webgl-$PersonName"
 
 Write-Host "== Provisioning AWS target: $PersonName ==" -ForegroundColor Cyan
 Write-Host "Bucket: $BucketName"
@@ -64,7 +64,7 @@ if (-not $bucketExists) {
 # ---------------------------------------------------------------------------
 # 2. CloudFront Origin Access Control — one shared OAC, reused for everyone
 # ---------------------------------------------------------------------------
-$oacName = "fighter-webgl-oac"
+$oacName = "patient-zero-webgl-oac"
 $oacId = aws cloudfront list-origin-access-controls `
     --query "OriginAccessControlList.Items[?Name=='$oacName'].Id" --output text
 
@@ -153,7 +153,7 @@ Write-Host "      Applied." -ForegroundColor Green
 # ---------------------------------------------------------------------------
 # 5. Deploy-only IAM policy for this person (upload + invalidate, that bucket only)
 # ---------------------------------------------------------------------------
-$policyName = "fighter-webgl-deploy-$PersonName"
+$policyName = "patient-zero-webgl-deploy-$PersonName"
 $policyArn = aws iam list-policies --scope Local `
     --query "Policies[?PolicyName=='$policyName'].Arn" --output text
 

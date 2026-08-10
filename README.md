@@ -1,4 +1,4 @@
-# Patient Zero — Fighter Project Console Environment
+# Patient Zero
 
 This is the origin instance of what's meant to grow into a bigger console
 game-dev project. Everything here was planned and built in one continuous

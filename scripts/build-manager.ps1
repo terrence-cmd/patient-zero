@@ -41,7 +41,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$DistributionComment = "fighter-webgl-$PersonName"
+$DistributionComment = "patient-zero-webgl-$PersonName"
 $LogFile = ".\build-log-$Target.txt"
 $OutputFolder = Join-Path $ProjectPath "Builds\$Target"
 

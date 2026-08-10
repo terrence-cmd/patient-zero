@@ -5,7 +5,7 @@
     from the same codebase.
 
 .USAGE
-    .\1-scaffold-project.ps1 -ProjectRoot "C:\Dev\MyFighter"
+    .\1-scaffold-project.ps1 -ProjectRoot "C:\Dev\PatientZero"
 #>
 
 param(
