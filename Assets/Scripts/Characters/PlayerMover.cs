@@ -34,7 +34,12 @@ public class PlayerMover : MonoBehaviour
         var rend = GetComponent<Renderer>();
         if (rend != null)
         {
-            rend.material.color = PlayerColors[index];
+            // PropertyBlock tints without instantiating a material copy (avoids
+            // leaks when players join/leave repeatedly).
+            var block = new MaterialPropertyBlock();
+            rend.GetPropertyBlock(block);
+            block.SetColor("_Color", PlayerColors[index]);
+            rend.SetPropertyBlock(block);
         }
     }
 
