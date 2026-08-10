@@ -35,9 +35,11 @@ doesn't belong in the settled record below.
 | File | Purpose |
 |---|---|
 | [`fable5-task-brief-gate0.md`](fable5-task-brief-gate0.md) | The task brief Fable 5 builds from |
+| [`cursor-qa-brief-gate0.md`](cursor-qa-brief-gate0.md) | The task brief Cursor's independent QA pass works from (Piece 3 of the build — see `docs/05-build-pipeline.md`) |
 | [`scripts/provision-aws-target.ps1`](scripts/provision-aws-target.ps1) | Provisions one person's AWS hosting target (run once per person) |
 | [`scripts/build-manager.ps1`](scripts/build-manager.ps1) | Builds + deploys a WebGL/Desktop build (run every time there's something new to ship) |
 | [`scripts/legacy/`](scripts/legacy/) | Pre-Fable-5-decision scaffold scripts, kept as a manual fallback — see the README inside |
+| [`PROVISIONED_TARGETS.md`](PROVISIONED_TARGETS.md) | Who has a live AWS hosting target already, so it's clear what exists before provisioning another |
 
 ## The standing rule
 
