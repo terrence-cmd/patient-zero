@@ -29,6 +29,17 @@ document first, actually trying to figure out *why* something broke
 before asking someone else, is not a delay on the way to that second
 thing. It **is** that second thing.
 
+One practical condition on that offer: **push your work to GitHub
+first.** I can't help with something I can't see. When I go looking, I'm
+not looking over your shoulder at your screen — I'm pulling your actual
+pushed code and going through it myself with the same tools this whole
+project is built on, Cursor Pro and Claude Code, at full capability.
+Call that "God Mode" if you want a name for it: me, with real tools,
+against your real code. None of that works on something still sitting
+unpushed, local-only, on your own machine. If you want my help, `git
+push` first — that's not extra homework on top of asking for help. It's
+the actual mechanism that makes the help possible at all.
+
 Every failure documented below is real — not a hypothetical
 "just in case" list, but the actual, reproduced sequence of things that
 went wrong getting this exact project's environment working. The goal of
