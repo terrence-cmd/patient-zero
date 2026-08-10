@@ -23,7 +23,15 @@ any hardware cost or acquisition step. Concretely, this means:
 - Fullscreen Window or Exclusive Fullscreen player settings, resolution
   locked, no resolution dialog on launch
 - Unity's Input System package for gamepad support (Xbox controllers work
-  natively via XInput, no extra drivers)
+  natively via XInput, no extra drivers). Xbox is the *official, tested*
+  standard for exactly that reason, but input bindings stay generic
+  (`<Gamepad>`, not Xbox-specific) on purpose — other gamepads
+  (PlayStation, Switch Pro, generic USB/Bluetooth) will likely work too,
+  so no kid's family has to go buy a specific controller. They're just
+  not what QA validates against, and cross-brand feel (deadzone, d-pad
+  behavior) isn't guaranteed consistent. If a controller doesn't seem to
+  do anything at all, Xbox hardware is the known-good fallback to test
+  against
 - Menus navigable entirely by controller (UI Toolkit / uGUI + Input
   System's UI navigation actions) — the actual thing that sells the
   "console" feel, more than fullscreen alone

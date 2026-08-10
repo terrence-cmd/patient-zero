@@ -36,24 +36,43 @@ Fable 5's own join-test used the Input System's virtual/synthetic device
 test fixtures, not real hardware. Nobody has confirmed this with actual
 gamepads yet.
 
-**Defined hardware: Xbox controllers (XInput) only.** This is a deliberate
-choice already recorded in `docs/01-environment-setup.md` — Xbox
-controllers work natively on Windows via XInput with no extra driver
-install, which matters for outfitting multiple kids cheaply and without
-setup friction. Do not test with, or assume support for, PlayStation
-(DualShock/DualSense), Switch Pro, or generic/no-name USB gamepads —
-those aren't part of this project's scope and may need extra
-compatibility layers (e.g. Steam Input) that Xbox/XInput doesn't.
+**Xbox controllers (XInput) are the required, officially-tested standard —
+but they are not the only thing that has to work.** The input bindings in
+`Assets/Scripts/Input/PlayerControls.inputactions` are intentionally left
+generic (`<Gamepad>`, not `<XInputController>`), specifically so kids can
+use whatever gamepad their family already owns — PlayStation, Switch Pro,
+generic USB/Bluetooth — without anyone needing to buy new hardware. Do
+not tighten that binding. Xbox is the *official pass/fail standard*
+because it's driver-free on Windows and gives a consistent baseline
+across different kids' machines, not because other controllers are
+unsupported.
+
+Known real differences across brands, worth being aware of even though
+they're not blockers: analog stick deadzone/drift varies by controller
+quality; some third-party pads report the d-pad as an 8-way HAT switch
+rather than Xbox's discrete buttons, which can feel different; and a
+sufficiently non-standard/generic pad may fail Unity's device
+auto-detection entirely, in which case Move and Join simply won't fire —
+no crash, no error, just silence. If a kid's controller doesn't seem to
+do anything, that's the first thing to check, and swapping to Xbox
+hardware is the known-good fallback.
 
 **You almost certainly cannot press physical buttons yourself.** Don't
 claim this passed. Instead:
-- Write a precise, step-by-step manual test procedure specific to two
-  Xbox/XInput controllers (wired or wireless, doesn't matter — both use
-  the same XInput driver on Windows): exact button to press, what should
-  happen on-screen for each of: player 1 joins, player 2 joins, a 3rd
-  pad is rejected, a player leaving re-opens a join slot.
+- Write a precise, step-by-step manual test procedure for two Xbox/
+  XInput controllers (wired or wireless — both use the same XInput
+  driver on Windows): exact button to press, what should happen
+  on-screen for each of: player 1 joins, player 2 joins, a 3rd pad is
+  rejected, a player leaving re-opens a join slot. **This Xbox procedure
+  is what the required Pass/Fail verdict is based on** — do not
+  substitute a different brand for the official result.
+- If a non-Xbox controller happens to be available and you want to note
+  how it behaves, that's fine and useful — but record it as a *separate,
+  clearly-labeled best-effort note* in the scorecard (e.g. "Also tried:
+  PS4 controller — worked / didn't / felt different, because X"), never
+  as a substitute for the required Xbox result.
 - No Xbox controllers were available as of this brief being written —
-  mark this item **Needs Human Execution** in your report (see
+  mark the required item **Needs Human Execution** in your report (see
   Deliverables) rather than asserting a pass. If that changes and
   Xbox controllers become available, run the procedure live with
   whoever's running you, watching Unity's Console output, and report
