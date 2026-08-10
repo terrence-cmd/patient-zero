@@ -40,6 +40,7 @@ doesn't belong in the settled record below.
 | [`scripts/build-manager.ps1`](scripts/build-manager.ps1) | Builds + deploys a WebGL/Desktop build (run every time there's something new to ship) |
 | [`scripts/legacy/`](scripts/legacy/) | Pre-Fable-5-decision scaffold scripts, kept as a manual fallback — see the README inside |
 | [`PROVISIONED_TARGETS.md`](PROVISIONED_TARGETS.md) | Who has a live AWS hosting target already, so it's clear what exists before provisioning another |
+| [`CONTROLLER_SETUP.md`](CONTROLLER_SETUP.md) | Kid-facing walkthrough: wired vs. wireless controller setup, what to do on a desktop tower with no built-in Bluetooth, and troubleshooting |
 
 ## The standing rule
 
