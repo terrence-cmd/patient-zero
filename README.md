@@ -34,6 +34,7 @@ doesn't belong in the settled record below.
 
 | File | Purpose |
 |---|---|
+| [`UNITY_INSTALL.md`](UNITY_INSTALL.md) | The reliable Unity install procedure — this was the single most failure-prone step of the whole setup, and this doc is every real failure mode hit, with fixes |
 | [`fable5-task-brief-gate0.md`](fable5-task-brief-gate0.md) | The task brief Fable 5 builds from |
 | [`cursor-qa-brief-gate0.md`](cursor-qa-brief-gate0.md) | The task brief Cursor's independent QA pass works from (Piece 3 of the build — see `docs/05-build-pipeline.md`) |
 | [`scripts/provision-aws-target.ps1`](scripts/provision-aws-target.ps1) | Provisions one person's AWS hosting target (run once per person) |
