@@ -42,6 +42,7 @@ doesn't belong in the settled record below.
 | [`PROVISIONED_TARGETS.md`](PROVISIONED_TARGETS.md) | Who has a live AWS hosting target already, so it's clear what exists before provisioning another |
 | [`CONTROLLER_SETUP.md`](CONTROLLER_SETUP.md) | Kid-facing walkthrough: wired vs. wireless controller setup, what to do on a desktop tower with no built-in Bluetooth, and troubleshooting |
 | [`BUILD_AND_DEPLOY.md`](BUILD_AND_DEPLOY.md) | The critical path from editing a change to it being playable — build-manager.ps1's exact steps, why closing the Editor first matters, Desktop vs. WebGL |
+| [`CURSOR_SETUP.md`](CURSOR_SETUP.md) | Installing Cursor, opening this repo in it, and what Free vs. Pro actually gets you |
 
 ## The standing rule
 
