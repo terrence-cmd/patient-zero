@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb4af18b9dd869478eefc0f1c6bbced, type: 3}
+  m_Name: MoveLibrary_Demo
+  m_EditorClassIdentifier: Assembly-CSharp::MoveLibrary
+  libraryId: demo_basics
+  moves:
+  - {fileID: 11400000, guid: 34e1732a62dc2de4381c895649218f3a, type: 2}
+  - {fileID: 11400000, guid: e64ebe47fa6fec9408c9da0b0a358b77, type: 2}
+  - {fileID: 11400000, guid: 2dce22b0f157c8649ae9f308c5000d40, type: 2}
+  - {fileID: 11400000, guid: 590f1fc05f6885c4bae464f28531069f, type: 2}
+  - {fileID: 11400000, guid: 41aaeb6049d1e2f45a72ad05729b5d0d, type: 2}
+  - {fileID: 11400000, guid: d38a9980429e60149b3627d3a771d766, type: 2}
