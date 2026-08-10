@@ -34,6 +34,7 @@ doesn't belong in the settled record below.
 
 | File | Purpose |
 |---|---|
+| [`SESSION_HANDOFF.md`](SESSION_HANDOFF.md) | Authoritative "where things actually stand right now" — read this first if picking the project back up, it wins over anything else if they conflict |
 | [`INTEGRITY.md`](INTEGRITY.md) | Read this one first. Why assisted vs. unassisted has to stay honest and visible, and how to self-attribute commits — not enforced, on purpose |
 | [`UNITY_INSTALL.md`](UNITY_INSTALL.md) | The reliable Unity install procedure — this was the single most failure-prone step of the whole setup, and this doc is every real failure mode hit, with fixes |
 | [`fable5-task-brief-gate0.md`](fable5-task-brief-gate0.md) | The task brief Fable 5 builds from |
@@ -63,6 +64,12 @@ done in the moment. Fix these down the road, not urgent:
   apply the same way to older Micro-USB Xbox One controllers (didn't
   always ship with a cable at all) or third-party "Xbox-compatible"
   controllers (no guarantee on their included cable).
+- **A real, verified finding from live hardware testing isn't in
+  `CONTROLLER_SETUP.md` yet**: Xbox Series controllers connected via
+  Bluetooth may not register in Unity's Input System at all (shows as
+  unsupported generic HID) even though Windows shows them fully
+  connected — wired is the confirmed fix. Full detail and sourcing in
+  [`SESSION_HANDOFF.md`](SESSION_HANDOFF.md).
 
 ## The standing rule
 
