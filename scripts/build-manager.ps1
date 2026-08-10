@@ -36,7 +36,7 @@ param(
 
     [string]$ProjectPath = ".",
 
-    [string]$UnityPath = "C:\Program Files\Unity\Hub\Editor\<VERSION>\Editor\Unity.exe"
+    [string]$UnityPath = "C:\Program Files\Unity\Hub\Editor\6000.3.21f1\Editor\Unity.exe"
 )
 
 $ErrorActionPreference = "Stop"
