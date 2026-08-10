@@ -48,6 +48,22 @@ doesn't belong in the settled record below.
 | [`.cursor/rules/patient-zero-qa.mdc`](.cursor/rules/patient-zero-qa.mdc) | Loads automatically in Cursor on every request in this repo — points it at INTEGRITY.md/the QA brief and states the standing rules, so nobody has to paste a kickoff prompt by hand |
 | [`GAME_FILE_STORAGE.md`](GAME_FILE_STORAGE.md) | What a "Game File" is (a resumable saved snapshot, distinct from working and playing), naming/storage convention, and how it relates to git |
 
+## Known gaps — tracked, not yet fixed
+
+Small, real refinements identified but deliberately deferred rather than
+done in the moment. Fix these down the road, not urgent:
+
+- **`CONTROLLER_SETUP.md`'s cable-testing section is more cautious than
+  it needs to be for one common case.** A genuine Microsoft Xbox Series
+  controller's own in-box USB-C cable is reliably a real data cable —
+  wired play is an advertised feature, so it has to be. The doc's
+  Device-Manager test is still correct as a general fallback, but
+  doesn't yet carve out "genuine Xbox Series controller + its own
+  original cable = skip the test" as an explicit exception. Doesn't
+  apply the same way to older Micro-USB Xbox One controllers (didn't
+  always ship with a cable at all) or third-party "Xbox-compatible"
+  controllers (no guarantee on their included cable).
+
 ## The standing rule
 
 No scope creep. Every doc and script above states its own boundaries
