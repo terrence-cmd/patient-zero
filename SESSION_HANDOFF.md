@@ -5,11 +5,12 @@ up in a future session with zero memory of how it got here. If this
 conflicts with anything else in the repo, this file wins — it's more
 current.
 
-Last updated: 2026-08-10, later the same day (Gate 1 combat system built by
-Cursor, a real join→action-map bug found and fixed, verified live with
-real P1 gamepad hardware — see "Gate 1 combat system" below). Gate 0
-itself is unchanged: still waiting on a second pad for the official
-two-controller Pass.
+Last updated: 2026-08-10, later still the same day (Cursor built a first
+side-scroller fight system — characters, stage, health — on top of Gate 1
+combat; live-verified P1 gamepad + P2 keyboard join and per-character
+moves; damage/KO not yet confirmed live and the work is **uncommitted** —
+see "Side-scroller fight system" below). Gate 0 itself is unchanged: still
+waiting on a second pad for the official two-controller Pass.
 
 ---
 
@@ -256,9 +257,12 @@ right after join, so enable/pairing state is directly observable in
 ```
 
 All four normal attacks fired correctly off the real gamepad after the
-fix. **Health bars, blocking, cancels, projectiles, crouch state, and
-animation remain explicitly out of scope** per `FighterCombat.cs`'s own
-doc comment — not built yet, don't assume otherwise.
+fix. At this point in the day, health bars, blocking, cancels,
+projectiles, crouch state, and animation were still explicitly out of
+scope per `FighterCombat.cs`'s own doc comment. **That changed later the
+same day — see "Side-scroller fight system" below for health/characters/
+stages; blocking, cancels, projectiles, crouch state, and animation are
+still not built.**
 
 One side note from earlier in the same session, worth not re-chasing: a
 Desktop rebuild's own `PatientZero.exe` launcher stub can look
@@ -268,6 +272,72 @@ build behavior (the exe is a thin bootstrapper; all real code lives in
 `PatientZero_Data`), not a broken build. Already covered under
 "Confirmation builds" below; re-confirmed the hard way tonight before
 being certain it wasn't a bug.
+
+---
+
+## Side-scroller fight system — built, live-verified through join/movement, uncommitted
+
+Still the same day: Terrence had Cursor build an MK-style 2D side-scroller
+fight system on top of Gate 1 combat — deliberately chosen over 3D as the
+faster, more fun path to something playable. **As of this write-up, none
+of this is committed** — `git status` shows it all as modified/untracked
+in the working tree. Don't assume it's safe in git; check `git status`
+before trusting this section is still accurate.
+
+**New pieces, all cross-checked against real asset GUIDs (not assumed):**
+
+- **`FighterHealth`** — plain HP (`Configure`/`ApplyDamage`/`IsKnockedOut`),
+  wired into `FighterCombat` (damage applied on a landed hit) and
+  `PlayerMover`/`FighterCombat` (KO blocks movement and further attacks).
+- **`CharacterDefinition`** — per-character move library **and** a
+  button→moveId override map, so different characters throw different
+  named moves off the same six physical buttons. `FighterCombat.ApplyCharacter()`
+  applies one at runtime.
+- **`FightDefinition`** / **`FightDirector`** — a `FightDefinition` asset
+  bundles a stage, P1/P2 `CharacterDefinition`s, starting HP, and a
+  side-view-movement flag. `FightDirector` (new, on `PlayerManager` next
+  to `PlayerInputManager`) assigns a character per joining player,
+  configures `FighterHealth`, switches `PlayerMover` to side-view-only +
+  clamps to stage bounds, tints each fighter, positions camera/ground for
+  the stage, and draws a basic on-screen HP HUD via `OnGUI`.
+- **`Fight_BasicSideScroller`** asset — `Stage_StoneCourtyard`,
+  `Character_Warrior` (P1) vs `Character_Shadow` (P2), 100 HP,
+  side-view movement on. All three referenced GUIDs confirmed resolving
+  to real assets, not dangling.
+- **Keyboard bindings from the `e53ad21` fix turned out to double as a
+  solo 2-player test path** — WASD/J/I/K/L/U/O lets one person test the
+  full 2-fighter loop (gamepad as P1, keyboard as P2) without a second
+  physical controller. Useful beyond just Editor testing.
+
+**Verified live, real hardware, after a fresh rebuild (0 errors, 0
+warnings; confirmed via the real Unity build log, not just exit code):**
+
+```
+[Fight] Stage 'stone_courtyard' applied (basic_side_scroller ...: stage=stone_courtyard, P1=warrior, P2=shadow, hp=100)
+[Join] Player 1 joined (devices: XInputControllerWindows:/XInputControllerWindows)
+[FighterCombat] P1 ready (LightPunch enabled=True, devices=1)
+[Fight] P1 → warrior
+[Join] Player 2 joined (devices: Keyboard:/Keyboard)
+[FighterCombat] P2 ready (LightPunch enabled=True, devices=1)
+[Fight] P2 → shadow
+[Combat] P1 started high_kick ...
+[Combat] P2 started high_punch ...
+```
+
+Confirmed real per-character move names differ from the earlier shared
+demo list (`high_kick`/`low_kick` for `warrior` vs `high_kick`/`high_punch`
+for `shadow`) — proof `ApplyCharacter()` genuinely overrides the move set,
+not just cosmetic.
+
+**Not yet confirmed live: damage actually landing.** No
+`[Combat] ... hit ...` or `[Health] ...` log line appeared in this
+session — the two fighters were never actually maneuvered into range of
+each other before the session ended. The code path exists
+(`FighterCombat.TryHitOpponents()` → `FighterHealth.ApplyDamage()`) and
+looks correct on inspection, but "looks correct" and "verified live" are
+not the same thing per this project's own house rule — whoever picks this
+up next should land a real hit and confirm both the `[Combat] ... hit ...`
+log and the on-screen HP HUD actually move before trusting it further.
 
 ---
 
