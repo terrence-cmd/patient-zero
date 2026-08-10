@@ -12,6 +12,12 @@ eventually at Mortal-Kombat-caliber depth. It's designed to scale from
 "one person, one PC" to "a handful of people, each on their own PC,
 working in parallel" without re-architecting anything.
 
+## Your space
+
+[`NOTES.md`](NOTES.md) — reserved for you. Nothing else writes to this
+file. Open threads, half-formed ideas, questions for next time — whatever
+doesn't belong in the settled record below.
+
 ## Where to start reading
 
 | Doc | What's in it |
