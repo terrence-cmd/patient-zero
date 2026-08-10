@@ -36,17 +36,28 @@ Fable 5's own join-test used the Input System's virtual/synthetic device
 test fixtures, not real hardware. Nobody has confirmed this with actual
 gamepads yet.
 
+**Defined hardware: Xbox controllers (XInput) only.** This is a deliberate
+choice already recorded in `docs/01-environment-setup.md` — Xbox
+controllers work natively on Windows via XInput with no extra driver
+install, which matters for outfitting multiple kids cheaply and without
+setup friction. Do not test with, or assume support for, PlayStation
+(DualShock/DualSense), Switch Pro, or generic/no-name USB gamepads —
+those aren't part of this project's scope and may need extra
+compatibility layers (e.g. Steam Input) that Xbox/XInput doesn't.
+
 **You almost certainly cannot press physical buttons yourself.** Don't
 claim this passed. Instead:
-- Write a precise, step-by-step manual test procedure (which two USB/
-  Bluetooth gamepad types to use, exact button to press, what should
+- Write a precise, step-by-step manual test procedure specific to two
+  Xbox/XInput controllers (wired or wireless, doesn't matter — both use
+  the same XInput driver on Windows): exact button to press, what should
   happen on-screen for each of: player 1 joins, player 2 joins, a 3rd
-  pad is rejected, a player leaving re-opens a join slot).
-- If the human running you (Terrence) has gamepads connected and wants
-  to run it live with you watching Unity's Console output, do that and
-  report the real result.
-- Otherwise, mark this item **Needs Human Execution** in your report
-  (see Deliverables) rather than asserting a pass.
+  pad is rejected, a player leaving re-opens a join slot.
+- No Xbox controllers were available as of this brief being written —
+  mark this item **Needs Human Execution** in your report (see
+  Deliverables) rather than asserting a pass. If that changes and
+  Xbox controllers become available, run the procedure live with
+  whoever's running you, watching Unity's Console output, and report
+  the real result instead.
 
 ### 2. Independent code review
 
