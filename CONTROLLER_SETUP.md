@@ -254,3 +254,7 @@ copy Xbox's internal ID so Windows treats them exactly like a real one.
 They'll work the same as described in this doc, for better or worse —
 just know that "Windows says it's an Xbox controller" isn't a 100%
 guarantee it's genuinely a Microsoft one.
+
+---
+
+**Guided and inspired by Terrence. Written by Claude Sonnet 5.**

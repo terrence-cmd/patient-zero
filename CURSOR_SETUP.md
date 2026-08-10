@@ -98,3 +98,7 @@ hitting the limit, that's the actual signal Pro is worth it, not a
 guess in advance. And regardless of tier, remember hand-coding never
 goes away — Cursor without any AI credits left is just a very capable
 text editor at that point, still fully usable.
+
+---
+
+**Guided and inspired by Terrence. Written by Claude Sonnet 5.**

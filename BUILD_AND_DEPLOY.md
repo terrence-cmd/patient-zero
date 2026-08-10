@@ -119,3 +119,7 @@ the WebGL build.
 **I built and deployed, but my browser still shows the old version:**
 CloudFront invalidation is usually fast but isn't always instantaneous.
 Try a hard refresh (Ctrl+Shift+R) before assuming the deploy didn't work.
+
+---
+
+**Guided and inspired by Terrence. Written by Claude Sonnet 5.**

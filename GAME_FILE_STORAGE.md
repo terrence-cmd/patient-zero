@@ -113,3 +113,7 @@ granularly, and in a way that's shareable with other people. This
 document isn't trying to replace that — it's the on-ramp to
 understanding *why* you'd want it before jumping straight into learning
 git itself.
+
+---
+
+**Guided and inspired by Terrence. Written by Claude Sonnet 5.**

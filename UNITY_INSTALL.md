@@ -1,11 +1,41 @@
 # Installing Unity — the reliable path
 
-Getting Unity installed and working turned out to be the single most
-failure-prone step in setting up this environment — more so than
-anything AWS-related. This document is the clean procedure that actually
-works, distilled from a real install session that hit several genuine
-bugs along the way. The failure modes below aren't hypothetical — every
-one of them actually happened.
+**This is the hardest, most failure-prone step in this entire project —
+harder than anything involving AWS, harder than the actual game code.**
+That's not an exaggeration to make you feel better if it goes wrong; it's
+the honest, documented result of what actually happened setting this up.
+Installing a professional game engine means coordinating an account
+system, a license, a package manager, and an actual compiler toolchain —
+real infrastructure, not a simple download. It genuinely has more moving
+parts than most of what comes after it.
+
+This is also, widely and well documented across game development
+generally, the single point where the most people quit — not because
+they aren't capable of the actual game-making part, but because the
+*environment setup* breaks in some confusing way before they ever get to
+write a line of game code, and it feels like a personal failure instead
+of what it actually is: a genuinely hard, multi-system integration
+problem that professional engineers also get stuck on. **If this fights
+you, that is the normal, expected experience — not a sign you're doing
+it wrong.**
+
+If you get truly stuck — not "this is annoying," but actually stuck —
+come find me and I'll help. That offer is real. But don't make a habit
+of coming to the well too often. I can't teach you to code. I can only
+teach you how to teach yourself, and those are two very different
+things — one of them is useful for exactly as long as I'm standing next
+to you, and the other one is useful forever. Struggling with this
+document first, actually trying to figure out *why* something broke
+before asking someone else, is not a delay on the way to that second
+thing. It **is** that second thing.
+
+Every failure documented below is real — not a hypothetical
+"just in case" list, but the actual, reproduced sequence of things that
+went wrong getting this exact project's environment working. The goal of
+this document isn't just to hand you commands to copy — it's to leave
+you with enough of a real mental model that when something breaks in a
+way not listed here (it might), you have a fighting chance at figuring
+out why, instead of being stuck.
 
 ## The pinned version
 
@@ -155,3 +185,7 @@ Whatever machine this runs on, confirm `Unity.exe`'s version string
 matches `6000.3.21f1` exactly before trusting anything else in this
 repo to work against it. A different patch version may behave
 differently in ways that are hard to predict.
+
+---
+
+**Guided and inspired by Terrence. Written by Claude Sonnet 5.**
