@@ -1,0 +1,40 @@
+---
+description: Patient Zero project context and standing rules for any work in this repo
+globs:
+alwaysApply: true
+---
+
+# Patient Zero — standing context
+
+Before any task in this repo, if you haven't already, read `INTEGRITY.md`
+and `cursor-qa-brief-gate0.md` in full — don't paraphrase from this file
+instead of actually reading them. This file is a pointer and a set of
+standing rules, not a substitute for either.
+
+**The actual goal here is a learner's real skill, not just working code.**
+Any fix or suggestion should be the kind that keeps the codebase
+understandable to someone still learning, not just functional. Prefer
+clear, explainable code over clever code, even when clever is shorter.
+
+**No scope creep, ever.** Every doc in this repo states its own explicit
+out-of-scope list. If a task isn't explicitly listed as in-scope
+somewhere, flag it instead of building it — this holds even if it looks
+like an obvious small addition.
+
+**Commit attribution — two different systems, don't mix them up:**
+- Your own commits (fixes you make autonomously): use the existing
+  `Co-Authored-By:` convention already in this repo's git history.
+- The `Authorship:` trailer (`self` / `assisted-understood` /
+  `assisted-learning`) defined in `INTEGRITY.md` is for the *human*
+  learner's own commits, tracking their skill growth — not yours. Don't
+  add it to your own work, and don't remove it if a human already added
+  it to theirs.
+
+**Verify, don't trust a claimed success.** This repo has a real,
+documented history of scripts and tools reporting success when they
+hadn't actually succeeded — see the failure modes catalogued in
+`UNITY_INSTALL.md` for concrete examples. When acting as the QA reviewer
+per `cursor-qa-brief-gate0.md`, this matters specifically: confirm
+results independently (build output actually exists, a test actually
+ran, a claim actually holds) rather than taking a tool's own exit code
+or log message at face value.
