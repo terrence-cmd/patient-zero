@@ -41,8 +41,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$ProjectPath = (Resolve-Path $ProjectPath).Path
 $DistributionComment = "patient-zero-webgl-$PersonName"
-$LogFile = ".\build-log-$Target.txt"
+$LogFile = Join-Path $ProjectPath "build-log-$Target.txt"
 $OutputFolder = Join-Path $ProjectPath "Builds\$Target"
 
 # ---------------------------------------------------------------------------
@@ -59,8 +60,9 @@ if (-not (Test-Path $UnityPath)) {
 $method = "BuildScript.Build$Target"
 Write-Host "Running: $UnityPath -batchmode -quit -projectPath $ProjectPath -executeMethod $method"
 
-& $UnityPath -batchmode -quit -projectPath $ProjectPath -executeMethod $method -logFile $LogFile
-$buildExitCode = $LASTEXITCODE
+$buildArgs = @("-batchmode","-quit","-projectPath",$ProjectPath,"-executeMethod",$method,"-logFile",$LogFile)
+$buildProc = Start-Process -FilePath $UnityPath -ArgumentList $buildArgs -Wait -PassThru
+$buildExitCode = $buildProc.ExitCode
 
 if ($buildExitCode -ne 0) {
     Write-Host "Build FAILED (exit code $buildExitCode). See $LogFile for details." -ForegroundColor Red
