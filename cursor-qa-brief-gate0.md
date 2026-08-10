@@ -28,7 +28,7 @@ catches. You are that fresh reviewer. You are not building anything new.
 Re-running any of the above from scratch is wasted scope. Spend your time
 on what's below instead.
 
-## Your job — three checklist items, in priority order
+## Your job — four checklist items, in priority order
 
 ### 1. Physical two-gamepad hardware test
 
@@ -83,8 +83,9 @@ claim this passed. Instead:
 Go through `Assets/Scripts/`, `Assets/Editor/`, and `scripts/*.ps1` with
 fresh eyes — not looking for what Fable 5 said it did, looking for what's
 actually there. Specifically worth checking:
-- Edge cases in `TwoPlayerJoinController.cs` and `PlayerMover.cs`
-  (device disconnect mid-session, rapid join/leave, etc.)
+- Edge cases in `TwoPlayerJoinController.cs` and `PlayerMover.cs` (rapid
+  join/leave, unusual join ordering, etc. — mid-session disconnect
+  specifically is its own item, #3 below)
 - Anything in `BuildScript.cs` or `ProjectSetup.cs` that's fragile or
   silently assumes something not guaranteed to be true
 - General code quality: naming, dead code, anything that would confuse
@@ -94,7 +95,35 @@ If you find a **real bug**, fix it directly as a diff — don't just
 describe it in prose. If you find something that's a judgment call or
 genuinely out of scope, flag it in the report instead of touching it.
 
-### 3. Public-repo safety pass
+### 3. Mid-session controller disconnect behavior
+
+Nobody has verified what actually happens if a joined player's controller
+disconnects mid-session — dead battery, walked out of Bluetooth range,
+cable unplugged. Fable 5's automated tests covered join-in-progress and
+the 3-player cap, but never a disconnect *after* a player already joined.
+This is a real gap, not just a documentation gap — it's untested
+behavior, not known behavior.
+
+**Unlike the physical hardware test above, this one doesn't need real
+hardware at all.** Unity's Input System supports simulating a device
+removal mid-test via `InputSystem.RemoveDevice()` — the same
+virtual-device approach Fable 5 already used in
+`Assets/Tests/PlayMode/TwoPlayerJoinTests.cs`. Write a Play Mode test
+that: joins two virtual gamepads, removes one mid-test, and observes
+what actually happens:
+- Does `TwoPlayerJoinController.HandlePlayerLeft` actually fire?
+- Does the disconnected player's character get cleaned up (destroyed),
+  or does it sit frozen/orphaned in the scene?
+- Does joining correctly re-open afterward for a new (3rd) device, per
+  the existing cap logic?
+
+Report the real, observed behavior in the scorecard — not an assumption
+of "should work." If it's ugly (a frozen half-visible character, no
+cleanup), that's a legitimate finding: fix it directly if it's a small,
+contained fix; if it's bigger than that, flag it clearly rather than
+scope-creep into a real fix.
+
+### 4. Public-repo safety pass
 
 This repo is now public on GitHub (`github.com/terrence-cmd/patient-zero`),
 and multiple kids will eventually be pointed at it with their own Cursor
@@ -134,7 +163,7 @@ clean, but given who's coming next, a second independent pass matters:
   content beyond what already exists
 - Any AWS/infrastructure change of any kind — if something AWS-related
   looks wrong, flag it in the report, do not touch it
-- Anything not explicitly listed in the three checklist items above,
+- Anything not explicitly listed in the four checklist items above,
   even if it seems like an obvious small fix
 
 If you find yourself about to build or change something not covered by
