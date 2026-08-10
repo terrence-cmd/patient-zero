@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Builds the Unity project (WebGL or Desktop) via batch mode, and for
     WebGL, deploys the output to that person's existing S3/CloudFront

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Initializes Git + Git LFS in an existing Unity project folder, with a
     Unity-appropriate .gitignore and .gitattributes for binary assets.

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Scaffolds the folder structure for a Unity project built to support
     both a browser (WebGL) build and a desktop (Windows Standalone) build

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Idempotently provisions ONE person's AWS hosting target for a Unity
     WebGL build: a private S3 bucket, a CloudFront distribution (pay-as-you-go,
@@ -43,7 +43,10 @@ Write-Host ""
 # 1. S3 bucket — private, no public access (CloudFront-only via OAC)
 # ---------------------------------------------------------------------------
 $bucketExists = $true
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 aws s3api head-bucket --bucket $BucketName 2>$null
+$ErrorActionPreference = $prevEAP
 if ($LASTEXITCODE -ne 0) { $bucketExists = $false }
 
 if (-not $bucketExists) {
@@ -67,6 +70,7 @@ if (-not $bucketExists) {
 $oacName = "patient-zero-webgl-oac"
 $oacId = aws cloudfront list-origin-access-controls `
     --query "OriginAccessControlList.Items[?Name=='$oacName'].Id" --output text
+if ($oacId -eq "None") { $oacId = "" }
 
 if ([string]::IsNullOrWhiteSpace($oacId)) {
     Write-Host "[2/5] Creating Origin Access Control..." -ForegroundColor Yellow
@@ -76,7 +80,7 @@ if ([string]::IsNullOrWhiteSpace($oacId)) {
         SigningBehavior = "always"
         OriginAccessControlOriginType = "s3"
     } | ConvertTo-Json -Compress
-    $oacConfig | Out-File ".\oac-config.tmp.json" -Encoding utf8
+    $oacConfig | Out-File ".\oac-config.tmp.json" -Encoding ascii
     $oacResult = aws cloudfront create-origin-access-control --origin-access-control-config file://oac-config.tmp.json | ConvertFrom-Json
     Remove-Item ".\oac-config.tmp.json"
     $oacId = $oacResult.OriginAccessControl.Id
@@ -90,6 +94,7 @@ if ([string]::IsNullOrWhiteSpace($oacId)) {
 # ---------------------------------------------------------------------------
 $distId = aws cloudfront list-distributions `
     --query "DistributionList.Items[?Comment=='$DistributionComment'].Id" --output text
+if ($distId -eq "None") { $distId = "" }
 
 if ([string]::IsNullOrWhiteSpace($distId)) {
     Write-Host "[3/5] Creating CloudFront distribution..." -ForegroundColor Yellow
@@ -118,7 +123,7 @@ if ([string]::IsNullOrWhiteSpace($distId)) {
         }
         PriceClass = "PriceClass_100"
     } | ConvertTo-Json -Depth 10 -Compress
-    $distConfig | Out-File ".\dist-config.tmp.json" -Encoding utf8
+    $distConfig | Out-File ".\dist-config.tmp.json" -Encoding ascii
     $distResult = aws cloudfront create-distribution --distribution-config file://dist-config.tmp.json | ConvertFrom-Json
     Remove-Item ".\dist-config.tmp.json"
     $distId = $distResult.Distribution.Id
@@ -145,7 +150,7 @@ $bucketPolicy = @{
         Condition = @{ StringEquals = @{ "AWS:SourceArn" = "arn:aws:cloudfront::${AccountId}:distribution/$distId" } }
     })
 } | ConvertTo-Json -Depth 10 -Compress
-$bucketPolicy | Out-File ".\bucket-policy.tmp.json" -Encoding utf8
+$bucketPolicy | Out-File ".\bucket-policy.tmp.json" -Encoding ascii
 aws s3api put-bucket-policy --bucket $BucketName --policy file://bucket-policy.tmp.json | Out-Null
 Remove-Item ".\bucket-policy.tmp.json"
 Write-Host "      Applied." -ForegroundColor Green
@@ -156,6 +161,7 @@ Write-Host "      Applied." -ForegroundColor Green
 $policyName = "patient-zero-webgl-deploy-$PersonName"
 $policyArn = aws iam list-policies --scope Local `
     --query "Policies[?PolicyName=='$policyName'].Arn" --output text
+if ($policyArn -eq "None") { $policyArn = "" }
 
 if ([string]::IsNullOrWhiteSpace($policyArn)) {
     Write-Host "[5/5] Creating deploy-only IAM policy..." -ForegroundColor Yellow
@@ -174,7 +180,7 @@ if ([string]::IsNullOrWhiteSpace($policyArn)) {
             }
         )
     } | ConvertTo-Json -Depth 10 -Compress
-    $deployPolicy | Out-File ".\deploy-policy.tmp.json" -Encoding utf8
+    $deployPolicy | Out-File ".\deploy-policy.tmp.json" -Encoding ascii
     $policyResult = aws iam create-policy --policy-name $policyName --policy-document file://deploy-policy.tmp.json | ConvertFrom-Json
     Remove-Item ".\deploy-policy.tmp.json"
     $policyArn = $policyResult.Policy.Arn
