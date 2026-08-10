@@ -1,10 +1,26 @@
 # Controller Setup
 
-How to get a controller working so you can play. Find your situation
-below and follow those steps — you don't need to read the whole thing.
+How to get a controller working so you can play. **Find your situation
+in the list below and jump straight to it — you don't need to read this
+whole document, just your one section.**
 
-## What you need (read this first — the #1 "I did everything right and it
-## still doesn't work" trap is here)
+## Find your situation
+
+- **I have an Xbox controller** → [Step 0](#step-0-what-controller-do-you-have)
+- **I have a different controller** (PlayStation, Switch, generic/no-name)
+  → [Step 0](#step-0-what-controller-do-you-have), then
+  [Using a non-Xbox controller](#using-a-non-xbox-controller)
+- **I don't know if my PC has Bluetooth** →
+  [Step 1](#step-1-does-your-pc-have-bluetooth)
+- **I only have a tablet** (iPad, Android) →
+  [Using a tablet](#using-a-tablet-ipad-or-android)
+- **I have a Windows tablet / Surface / 2-in-1** →
+  [Using a Windows tablet or 2-in-1](#using-a-windows-tablet-or-2-in-1-surface-etc)
+- **Can I just use a keyboard?** →
+  [Can I use a keyboard instead](#can-i-use-a-keyboard-instead-of-a-controller)
+- **Something's not working** → [Troubleshooting](#troubleshooting)
+
+## What you need before you start
 
 To play, you need:
 1. A controller (Xbox is what's tested — see Step 0).
@@ -32,14 +48,14 @@ through the list for a new entry — usually under **"Xbox Peripherals"**
 or **"Human Interface Devices"** — that appeared when you plugged in.
 - **New device shows up in the list:** it's a real data cable. If the
   controller still doesn't respond, the problem is something else — see
-  "If something's not working" below.
+  [Troubleshooting](#troubleshooting) below.
 - **Nothing new shows up, even though the light is on:** it's a
   charge-only cable. Try a different one — the cable that originally
   came in the box with the controller is always a safe bet, since
   manufacturers don't ship charge-only cables with a controller that
   needs to send input.
 
-## Step 0: what kind of controller do you have?
+## Step 0: what controller do you have
 
 **Xbox controller** — this is the one everything below is written for and
 tested against. If you have one, skip to Step 1.
@@ -47,19 +63,20 @@ tested against. If you have one, skip to Step 1.
 **Something else** (PlayStation, Switch Pro, a generic/no-name gamepad) —
 it'll probably still work, since the game doesn't specifically block
 other brands. But it isn't officially tested, and it might feel a little
-different (see "If you're using a non-Xbox controller" at the bottom).
+different (see [Using a non-Xbox controller](#using-a-non-xbox-controller)
+below).
 Nothing bad happens if it's not perfect — worst case it just doesn't feel
 as tight, or doesn't get recognized at all. If that happens, borrowing an
 Xbox controller is the known-good fallback.
 
-## Step 1: does your PC have Bluetooth built in?
+## Step 1: does your PC have Bluetooth
 
 Open **Settings → Bluetooth & devices**.
 
 - If you see a Bluetooth toggle/switch there, you have it.
 - If there's no Bluetooth option at all, you don't — and that's fine,
-  see "No Bluetooth" below. Most laptops have it built in; a lot of
-  desktop towers don't.
+  see "Wireless — if your PC does NOT have Bluetooth" below. Most
+  laptops have it built in; a lot of desktop towers don't.
 
 ## Step 2: pick wired or wireless
 
@@ -117,7 +134,7 @@ running, **press any button on the controller** to actually join as a
 player. That's a separate step every time you play, not something you
 only do once.
 
-## If something's not working
+## Troubleshooting
 
 **Controller connects but nothing happens in-game:** make sure the game
 is actually running and press a button — connecting to Windows and
@@ -135,7 +152,7 @@ Hub** (there may be more than one — check each), right-click →
 to turn off this device to save power."** Do this for each USB Root Hub
 listed if the first one doesn't fix it.
 
-## If you're using a non-Xbox controller
+## Using a non-Xbox controller
 
 A couple of real (but harmless) things that can differ:
 - The analog stick might feel drifty or less precise — that's the
@@ -149,6 +166,50 @@ play session feels. Nothing gets saved, remembered, or damaged by a
 controller having a rough connection or drifty sticks. If a non-Xbox
 controller doesn't work well, borrowing an Xbox controller is always the
 fallback that's guaranteed to work as described in this doc.
+
+## Using a tablet (iPad or Android)
+
+**Short answer: not supported right now.** Not because it's blocked on
+purpose — nothing was built for it yet. Specifically:
+- The Desktop version can't run on an iPad or Android tablet at all,
+  under any circumstances — it's a Windows program, full stop.
+- The browser version might technically load on a tablet, but there's no
+  touch controls built into the game at all — no on-screen joystick, no
+  tap-to-move. Even if the page opens, nothing would respond to touch.
+- Pairing a real Xbox controller to a tablet and trying the browser
+  version *might* work, in theory — tablets can pair Xbox controllers at
+  the system level. This has never actually been tested, though, and
+  browser controller support on tablets has a spotty track record. Don't
+  count on it.
+
+If a tablet is what's available, a Windows PC is the reliable path for
+now.
+
+## Using a Windows tablet or 2-in-1 (Surface, etc.)
+
+This is a different situation from an iPad or Android tablet — a Windows
+tablet or 2-in-1 is a full Windows PC in a different shape, not a
+separate platform. Everything else in this document applies to it
+exactly as written.
+
+One thing to know: touching the screen won't do anything either, for the
+same reason as above — no touch controls exist. A Windows tablet still
+needs an actual controller connected (wired or Bluetooth, same steps as
+any other PC) to play at all.
+
+## Can I use a keyboard instead of a controller
+
+**No, not currently** — only gamepad input works right now. This is a
+deliberate choice, not an oversight: the way local 2-player is built,
+each player is identified by *which physical device* they're using. A
+single shared keyboard doesn't cleanly split into "two players" without
+real extra design work (deciding how to divide the keys, whether joining
+even makes sense the same way, etc.) — it's a real feature to build, not
+a quick setting to flip on.
+
+For now, an Xbox controller (or another gamepad, best-effort — see
+[Using a non-Xbox controller](#using-a-non-xbox-controller)) is the way
+to play.
 
 ## Appendix: other things worth knowing
 
