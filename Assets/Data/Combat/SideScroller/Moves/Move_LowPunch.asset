@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2eaafdf48eec42b619c005bb53510, type: 3}
+  m_Name: Move_LowPunch
+  m_EditorClassIdentifier: PatientZero.Runtime::MoveDefinition
+  moveId: low_punch
+  displayName: Low Punch
+  category: 0
+  height: 2
+  frames:
+    startup: 3
+    active: 2
+    recovery: 8
+  hitbox:
+    offset: {x: 0.75, y: 0.55}
+    size: {x: 0.6, y: 0.35}
+  damage: 6
+  hitstun: 12
+  blockstun: 8
+  cancelIntoMoveIds:
+  - low_kick
+  - sweep

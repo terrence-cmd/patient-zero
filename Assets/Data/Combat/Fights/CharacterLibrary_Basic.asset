@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f25861da1a150b48bda5c871441b428, type: 3}
+  m_Name: CharacterLibrary_Basic
+  m_EditorClassIdentifier: PatientZero.Runtime::CharacterLibrary
+  libraryId: basic_roster
+  characters:
+  - {fileID: 11400000, guid: a1962a391b9cd2b428701dc1e9c0308b, type: 2}
+  - {fileID: 11400000, guid: a1e670939d18a7642864ecb382ddc3c8, type: 2}

@@ -29,11 +29,13 @@ public class FighterCombatTests : PatientZeroInputTestFixture
         Assert.IsNotNull(combat, "Player prefab should have FighterCombat");
         Assert.IsNotNull(combat.Library, "MoveLibrary should be assigned on prefab");
 
+        string punchId = combat.Library.GetById("high_punch") != null ? "high_punch" : "light_punch";
+
         // Bypass join grace + input map: start by id.
-        Assert.IsTrue(combat.TryStartMove("light_punch"), "light_punch should start from Idle");
+        Assert.IsTrue(combat.TryStartMove(punchId), $"{punchId} should start from Idle");
         Assert.AreEqual(CombatPhase.Startup, combat.Phase);
 
-        // light_punch is 3/2/7 = 12 frames at 60 FPS ≈ 0.2s
+        // Normals are short (~12f at 60 FPS); allow a little headroom.
         float guard = 0f;
         while (combat.Phase != CombatPhase.Idle && guard < 1.5f)
         {
@@ -79,11 +81,15 @@ public class FighterCombatTests : PatientZeroInputTestFixture
         Assert.IsNotNull(attacker);
         Assert.IsNotNull(defender);
 
+        // Let FightDirector finish character/stage configure (one frame after join).
+        yield return null;
+
         // Stand on top of each other so the active hitbox must overlap.
         attacker.transform.position = new Vector3(0f, 1f, 0f);
         defender.transform.position = new Vector3(0.6f, 1f, 0f);
 
-        Assert.IsTrue(attacker.TryStartMove("light_punch"));
+        string punchId = attacker.Library.GetById("high_punch") != null ? "high_punch" : "light_punch";
+        Assert.IsTrue(attacker.TryStartMove(punchId));
 
         float guard = 0f;
         while (defender.Phase != CombatPhase.Hitstun && guard < 1.5f)

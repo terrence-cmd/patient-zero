@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3955141874273929967}
   - component: {fileID: 4226688270660021649}
   - component: {fileID: 5240340306958183126}
+  - component: {fileID: 622343772935779786}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMover
   speed: 6
+  sideViewOnly: 0
 --- !u!114 &5240340306958183126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +177,23 @@ MonoBehaviour:
   hurtboxSize: {x: 1, y: 2}
   feetOffsetY: 1
   drawHitbox: 1
+  lightPunchMoveId: light_punch
+  heavyPunchMoveId: heavy_punch
+  lightKickMoveId: light_kick
+  heavyKickMoveId: heavy_kick
+  crouchJabMoveId: crouch_jab
+  specialMoveId: hadoken
+--- !u!114 &622343772935779786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756904890267726282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a3a0dd4d650bb4e9c628d3fc0e9a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PatientZero.Runtime::FighterHealth
+  maxHealth: 100
+  currentHealth: 100

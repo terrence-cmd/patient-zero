@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb4af18b9dd869478eefc0f1c6bbced, type: 3}
+  m_Name: MoveLibrary_SideScroller
+  m_EditorClassIdentifier: PatientZero.Runtime::MoveLibrary
+  libraryId: mk_side_scroller
+  moves:
+  - {fileID: 11400000, guid: 683f44f6a237da64ebdf7afa491c6bbe, type: 2}
+  - {fileID: 11400000, guid: 5a9c7d29036906640b6afa0a3b66a447, type: 2}
+  - {fileID: 11400000, guid: 78e9fef475eca0746a801fa191590c39, type: 2}
+  - {fileID: 11400000, guid: ede4895b0849b3943baac54ef806c929, type: 2}
+  - {fileID: 11400000, guid: c32f8f08212e88747a8f0acda7e17b8c, type: 2}
+  - {fileID: 11400000, guid: b9352ec457f9e37449a25919a6414b6c, type: 2}
+  - {fileID: 11400000, guid: bf1d6c83520432847b09725147389812, type: 2}
+  - {fileID: 11400000, guid: c6d915a57bca38d449c5a0d1a1f968b0, type: 2}

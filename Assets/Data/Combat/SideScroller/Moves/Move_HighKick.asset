@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2eaafdf48eec42b619c005bb53510, type: 3}
+  m_Name: Move_HighKick
+  m_EditorClassIdentifier: PatientZero.Runtime::MoveDefinition
+  moveId: high_kick
+  displayName: High Kick
+  category: 0
+  height: 0
+  frames:
+    startup: 7
+    active: 3
+    recovery: 14
+  hitbox:
+    offset: {x: 1.05, y: 1.35}
+    size: {x: 0.85, y: 0.45}
+  damage: 11
+  hitstun: 16
+  blockstun: 12
+  cancelIntoMoveIds: []

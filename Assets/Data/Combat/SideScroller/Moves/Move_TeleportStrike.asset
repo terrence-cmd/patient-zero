@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2eaafdf48eec42b619c005bb53510, type: 3}
+  m_Name: Move_TeleportStrike
+  m_EditorClassIdentifier: PatientZero.Runtime::MoveDefinition
+  moveId: teleport_strike
+  displayName: Teleport Strike (demo special)
+  category: 1
+  height: 1
+  frames:
+    startup: 18
+    active: 4
+    recovery: 16
+  hitbox:
+    offset: {x: -0.9, y: 1.1}
+    size: {x: 0.7, y: 0.7}
+  damage: 13
+  hitstun: 18
+  blockstun: 12
+  cancelIntoMoveIds: []

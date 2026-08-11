@@ -24,7 +24,16 @@ public class FighterCombat : MonoBehaviour
     [SerializeField] private float feetOffsetY = 1f;
     [SerializeField] private bool drawHitbox = true;
 
+    [Header("Attack button → moveId")]
+    [SerializeField] private string lightPunchMoveId = "light_punch";
+    [SerializeField] private string heavyPunchMoveId = "heavy_punch";
+    [SerializeField] private string lightKickMoveId = "light_kick";
+    [SerializeField] private string heavyKickMoveId = "heavy_kick";
+    [SerializeField] private string crouchJabMoveId = "crouch_jab";
+    [SerializeField] private string specialMoveId = "hadoken";
+
     private PlayerInput playerInput;
+    private FighterHealth health;
     private InputAction lightPunch;
     private InputAction heavyPunch;
     private InputAction lightKick;
@@ -51,9 +60,30 @@ public class FighterCombat : MonoBehaviour
 
     public void SetMoveLibrary(MoveLibrary library) => moveLibrary = library;
 
+    /// <summary>
+    /// Apply a character definition (move library, hurtbox, button→moveId map).
+    /// </summary>
+    public void ApplyCharacter(CharacterDefinition character)
+    {
+        if (character == null)
+            return;
+
+        if (character.moveLibrary != null)
+            moveLibrary = character.moveLibrary;
+
+        hurtboxSize = character.hurtboxSize;
+        lightPunchMoveId = character.lightPunchMoveId;
+        heavyPunchMoveId = character.heavyPunchMoveId;
+        lightKickMoveId = character.lightKickMoveId;
+        heavyKickMoveId = character.heavyKickMoveId;
+        crouchJabMoveId = character.crouchJabMoveId;
+        specialMoveId = character.specialMoveId;
+    }
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        health = GetComponent<FighterHealth>();
     }
 
     private void OnEnable()
@@ -144,6 +174,11 @@ public class FighterCombat : MonoBehaviour
         if (phase != CombatPhase.Idle || string.IsNullOrEmpty(moveId))
             return false;
 
+        if (health == null)
+            health = GetComponent<FighterHealth>();
+        if (health != null && health.IsKnockedOut)
+            return false;
+
         if (moveLibrary == null)
         {
             Debug.LogWarning("[FighterCombat] Cannot start move — MoveLibrary is not assigned on the prefab.");
@@ -205,17 +240,17 @@ public class FighterCombat : MonoBehaviour
 
         // Face buttons first so a chord doesn't always prefer Special.
         if (lightPunch != null && lightPunch.WasPressedThisFrame())
-            TryStartMove("light_punch");
+            TryStartMove(lightPunchMoveId);
         else if (heavyPunch != null && heavyPunch.WasPressedThisFrame())
-            TryStartMove("heavy_punch");
+            TryStartMove(heavyPunchMoveId);
         else if (lightKick != null && lightKick.WasPressedThisFrame())
-            TryStartMove("light_kick");
+            TryStartMove(lightKickMoveId);
         else if (heavyKick != null && heavyKick.WasPressedThisFrame())
-            TryStartMove("heavy_kick");
+            TryStartMove(heavyKickMoveId);
         else if (crouchJab != null && crouchJab.WasPressedThisFrame())
-            TryStartMove("crouch_jab");
+            TryStartMove(crouchJabMoveId);
         else if (special != null && special.WasPressedThisFrame())
-            TryStartMove("hadoken");
+            TryStartMove(specialMoveId);
     }
 
     private void TickCombatFrame()
@@ -288,6 +323,9 @@ public class FighterCombat : MonoBehaviour
             {
                 hitLandedThisMove = true;
                 other.ApplyHitstun(currentMove.hitstun);
+                var otherHealth = other.GetComponent<FighterHealth>();
+                if (otherHealth != null)
+                    otherHealth.ApplyDamage(currentMove.damage);
                 Debug.Log($"[Combat] P{playerInput.playerIndex + 1} hit " +
                           $"P{other.playerInput.playerIndex + 1} with {currentMove.moveId} " +
                           $"(dmg={currentMove.damage}, hitstun={currentMove.hitstun})");

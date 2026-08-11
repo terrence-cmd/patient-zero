@@ -2,14 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Placeholder character controller for Gate 0: proves each joined player
-/// controls a distinct object with their own device. Real character logic
-/// is Gate 1 territory.
+/// Character locomotion for joined players. Supports free XZ (Gate 0) or
+/// side-view X-only when a fight package asks for it.
 /// </summary>
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float speed = 6f;
+    [SerializeField] private bool sideViewOnly;
 
     private static readonly Color[] PlayerColors =
     {
@@ -20,11 +20,23 @@ public class PlayerMover : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction moveAction;
     private FighterCombat combat;
+    private FighterHealth health;
+    private Vector2 stageBoundsX = new Vector2(-8f, 8f);
+    private bool hasStageBounds;
+
+    public void SetSideViewOnly(bool enabled) => sideViewOnly = enabled;
+
+    public void SetStageBoundsX(float minX, float maxX)
+    {
+        stageBoundsX = new Vector2(minX, maxX);
+        hasStageBounds = true;
+    }
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         combat = GetComponent<FighterCombat>();
+        health = GetComponent<FighterHealth>();
     }
 
     private void OnEnable()
@@ -78,6 +90,11 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
+        if (health == null)
+            health = GetComponent<FighterHealth>();
+        if (health != null && health.IsKnockedOut)
+            return;
+
         // Attacks and hitstun lock movement so frame data is readable on-screen.
         if (combat != null && combat.LocksMovement)
             return;
@@ -88,7 +105,16 @@ public class PlayerMover : MonoBehaviour
             return;
 
         Vector2 move = moveAction.ReadValue<Vector2>();
-        Vector3 delta = new Vector3(move.x, 0f, move.y) * (speed * Time.deltaTime);
-        transform.Translate(delta, Space.World);
+        float x = move.x * speed * Time.deltaTime;
+        float z = sideViewOnly ? 0f : move.y * speed * Time.deltaTime;
+        transform.Translate(new Vector3(x, 0f, z), Space.World);
+
+        if (hasStageBounds)
+        {
+            Vector3 p = transform.position;
+            p.x = Mathf.Clamp(p.x, stageBoundsX.x, stageBoundsX.y);
+            p.z = sideViewOnly ? 0f : p.z;
+            transform.position = p;
+        }
     }
 }
