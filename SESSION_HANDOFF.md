@@ -8,8 +8,10 @@ current.
 Last updated: 2026-08-12 (match-flow spine added from Claude Design Game
 Flow PDF — see [`docs/08-game-flow.md`](docs/08-game-flow.md). Boot → Title
 → Join → Character Select → Opening/VS → Round Start → Fight → Match End →
-Results + Pause. Gate 0 Main cold-start unchanged. Not yet live-verified in
-Unity Editor on this machine.)
+Results + Pause. `Main.unity` itself unchanged, but **the Desktop build's
+default launch scene changed — see scene-order note below.** Headless
+build verified (0 errors/0 warnings); not yet live-verified in the Unity
+Editor / by play on this machine.)
 
 **Landing status (2026-08-12, this session):** the match-flow spine landed
 on `master` via [PR #1](https://github.com/terrence-cmd/patient-zero/pull/1)
@@ -25,6 +27,34 @@ history, it was only a one-time handoff vehicle. The
 `cursor/game-flow-spine-03e4` branch is now merged and safe to delete.
 **Still not live-verified in the Unity Editor on this machine** — that's
 the next real gate before trusting the flow, not the merge itself.
+
+**Headless verification done (2026-08-12), and one real finding from it:**
+ran `.\scripts\build-manager.ps1 -PersonName "terrence" -Target Desktop`
+on the merged `master` — build **succeeded, 0 errors, 0 warnings**
+(`Builds/Desktop/PatientZero.exe`, fresh `PatientZero_Data`). That's as
+far as headless checking goes — no tool here can drive the Editor's Game
+view or a built exe interactively, so the actual screens (Title, Join
+prompts, Character Select, 99s clock, Results+Pause) are still unseen.
+
+**Scene-order change worth knowing before running Gate 0's controller
+procedure again:** the patch inserted `Boot.unity` and `Title.unity`
+*ahead of* `Main.unity` in `ProjectSettings/EditorBuildSettings.asset`:
+
+```
+0: Assets/Scenes/Boot.unity
+1: Assets/Scenes/Title.unity
+2: Assets/Scenes/Main.unity
+```
+
+Scene index 0 is what a Desktop build cold-launches into. So
+double-clicking `PatientZero.exe` now boots into **Boot → Title → Join
+→ …**, not straight into `Main` like before. The merge commit's claim
+that "Gate 0 Main cold-start stays intact" is true only in the sense
+that `Main.unity`'s own contents weren't edited — the **default launch
+path changed**. `docs/07-cursor-qa-report.md` §1's official controller
+procedure was written assuming a cold launch drops straight into `Main`;
+that assumption no longer holds against this build. Terrence is playing
+through the new flow directly to confirm/adjust from here.
 
 Previously: 2026-08-10, later still the same day (Cursor built a first
 side-scroller fight system — characters, stage, health — on top of Gate 1
