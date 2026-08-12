@@ -11,20 +11,20 @@ Flow PDF — see [`docs/08-game-flow.md`](docs/08-game-flow.md). Boot → Title
 Results + Pause. Gate 0 Main cold-start unchanged. Not yet live-verified in
 Unity Editor on this machine.)
 
-**Landing status (2026-08-12, this session):** the match-flow spine commit
-(`71daaff`) is **not on `master`** — it lives on branch
-`cursor/game-flow-spine-03e4`, pushed to `origin`:
-https://github.com/terrence-cmd/patient-zero/pull/new/cursor/game-flow-spine-03e4.
-No PR opened yet. The Cursor background agent that built this couldn't
-push to `patient-zero` directly (403) and handed the patch off via a
-draft PR (`terrence-cmd/rig-redesign#14`) with a raw-file download link;
-Claude Code fetched and reviewed that patch, applied it with `git am` on
-this branch, and pushed it here. **`rig-redesign` PR #14 and its
-`cursor/patient-zero-flow-patch-handoff-03e4` branch are now closed/deleted
-— that repo is not part of patient-zero's history, it was only a one-time
-handoff vehicle.** Next agent/human: open a PR for
-`cursor/game-flow-spine-03e4` → `master` (or merge directly), then
-live-verify in the Unity Editor before trusting the flow.
+**Landing status (2026-08-12, this session):** the match-flow spine landed
+on `master` via [PR #1](https://github.com/terrence-cmd/patient-zero/pull/1)
+(merge commit `19344af`), merged by Terrence. It got there via
+`cursor/game-flow-spine-03e4`, built by a Cursor background agent that
+couldn't push to `patient-zero` directly (403) and handed the patch off
+via a draft PR (`terrence-cmd/rig-redesign#14`) with a raw-file download
+link; Claude Code fetched and reviewed that patch, applied it with
+`git am`, pushed the branch, opened PR #1, and Terrence merged it.
+**`rig-redesign` PR #14 and its `cursor/patient-zero-flow-patch-handoff-03e4`
+branch are closed/deleted** — that repo is not part of patient-zero's
+history, it was only a one-time handoff vehicle. The
+`cursor/game-flow-spine-03e4` branch is now merged and safe to delete.
+**Still not live-verified in the Unity Editor on this machine** — that's
+the next real gate before trusting the flow, not the merge itself.
 
 Previously: 2026-08-10, later still the same day (Cursor built a first
 side-scroller fight system — characters, stage, health — on top of Gate 1
@@ -392,12 +392,10 @@ log and the on-screen HP HUD actually move before trusting it further.
   (pinned — do not reinstall or bump for Gate 0).
 - Repo root:
   `C:\Users\tocam\Documents\GameDev\patient-zero`
-- Branch: currently checked out on `cursor/game-flow-spine-03e4` (pushed
-  to `origin`, **not merged to `master`**). `master` itself is still in
-  sync with `origin/master` after the three QA commits plus the later
-  hardware/doc/combat-system commits. Run `git status` / `git log -5` /
-  `git branch --show-current` on pickup — don't assume which branch is
-  checked out.
+- Branch: `master`, in sync with `origin/master` (fast-forwarded through
+  the PR #1 merge commit `19344af`, which brought in the match-flow
+  spine). Run `git status` / `git log -5` on pickup — don't assume this
+  stays accurate forever.
 - During hardware testing, Standalone `PatientZero.exe` and/or Unity
   Editor (Input Debugger) may still be open — check Task Manager /
   `tasklist` before assuming either way; close Editor before
@@ -437,8 +435,8 @@ log and the on-screen HP HUD actually move before trusting it further.
 
 1. Read this file + [`docs/07-cursor-qa-report.md`](docs/07-cursor-qa-report.md).
 2. `git pull` on `master`. If picking up the match-flow spine work, note
-   it's on `cursor/game-flow-spine-03e4` (pushed, unmerged, un-verified
-   in-Editor) — open a PR or merge it, then live-verify before trusting it.
+   it merged via PR #1 but is **still un-verified in the Unity Editor** —
+   live-verify before trusting it.
 3. If continuing hardware: two Xbox pads, **wired**, Desktop build or
    Editor Play on `Main`, follow scorecard §1; then edit scorecard
    verdict.
