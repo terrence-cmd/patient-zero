@@ -21,10 +21,38 @@ public class FightDirector : MonoBehaviour
 
     public void SetFight(FightDefinition definition) => fight = definition;
 
+    /// <summary>
+    /// Public entry for <see cref="GameFlowDirector"/> Opening / rematch.
+    /// </summary>
+    public void ApplyStagePresentationPublic() => ApplyStagePresentation();
+
+    /// <summary>
+    /// Re-apply character, health, spawn for every currently joined player
+    /// (rematch path — same stage, re-Configure).
+    /// </summary>
+    public void ReconfigureAllJoinedFighters()
+    {
+        if (fight == null)
+            return;
+
+        foreach (var player in PlayerInput.all)
+        {
+            if (player == null)
+                continue;
+            CharacterDefinition character = player.playerIndex == 0
+                ? fight.player1Character
+                : fight.player2Character;
+            ConfigureFighter(player, character, player.playerIndex);
+        }
+    }
+
     private void Awake()
     {
         manager = GetComponent<PlayerInputManager>();
-        ApplyStagePresentation();
+        // Flow-driven sessions apply presentation from Opening; Gate 0 Main
+        // cold-start still applies immediately so solo Main play works.
+        if (GameFlowDirector.Instance == null)
+            ApplyStagePresentation();
     }
 
     private void OnEnable()
@@ -140,6 +168,10 @@ public class FightDirector : MonoBehaviour
 
     private void OnGUI()
     {
+        // GameFlowHud owns banners/clock when the match-flow spine is running.
+        if (GameFlowDirector.Instance != null)
+            return;
+
         if (!drawHud || fight == null)
             return;
 

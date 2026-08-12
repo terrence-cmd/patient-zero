@@ -29,6 +29,7 @@ doesn't belong in the settled record below.
 | [`docs/04-parallel-dev-and-fable5.md`](docs/04-parallel-dev-and-fable5.md) | Multi-person parallel dev, the Fable 5 build split, and the scope-discipline rule |
 | [`docs/05-build-pipeline.md`](docs/05-build-pipeline.md) | The 4 build pieces, how they chain, and what's deliberately NOT automated yet |
 | [`docs/06-decision-log.md`](docs/06-decision-log.md) | The full chronological record — every real decision, in order |
+| [`docs/08-game-flow.md`](docs/08-game-flow.md) | Match-flow spine (Boot→Results+Pause) vs the design PDF, and how to run it |
 
 ## Where the actual deliverables are
 
