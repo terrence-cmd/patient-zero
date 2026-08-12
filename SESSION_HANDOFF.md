@@ -5,7 +5,13 @@ up in a future session with zero memory of how it got here. If this
 conflicts with anything else in the repo, this file wins — it's more
 current.
 
-Last updated: 2026-08-10, later still the same day (Cursor built a first
+Last updated: 2026-08-12 (match-flow spine added from Claude Design Game
+Flow PDF — see [`docs/08-game-flow.md`](docs/08-game-flow.md). Boot → Title
+→ Join → Character Select → Opening/VS → Round Start → Fight → Match End →
+Results + Pause. Gate 0 Main cold-start unchanged. Not yet live-verified in
+Unity Editor on this machine.)
+
+Previously: 2026-08-10, later still the same day (Cursor built a first
 side-scroller fight system — characters, stage, health — on top of Gate 1
 combat; live-verified P1 gamepad + P2 keyboard join and per-character
 moves; damage/KO not yet confirmed live and the work is **uncommitted** —
@@ -15,6 +21,11 @@ waiting on a second pad for the official two-controller Pass.
 ---
 
 ## Where things actually stand
+
+**Match flow (2026-08-12):** Basic collection is in tree — `GameState`,
+`GameFlowDirector`, Boot/Title scenes, stub HUD, 99s clock, rematch/quit,
+pause. Run **Patient Zero → Flow → Setup Game Flow**, then Play from Boot.
+Details and PDF diff: [`docs/08-game-flow.md`](docs/08-game-flow.md).
 
 **Gate 0 is functionally done, blocked on exactly one official item:** a
 **second** physical Xbox controller so the scorecard's item 1 procedure

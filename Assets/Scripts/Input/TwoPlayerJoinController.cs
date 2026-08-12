@@ -66,6 +66,16 @@ public class TwoPlayerJoinController : MonoBehaviour
         if (change != InputUserChange.DeviceLost)
             return;
 
+        // During an active flow-driven fight, device loss auto-pauses (Game Flow PDF).
+        // Gate 0 / join-screen behavior stays destroy-and-reopen-slot.
+        var flow = GameFlowDirector.Instance;
+        if (flow != null && flow.State == GameState.Fight)
+        {
+            Debug.Log("[Join] Device lost during Fight — requesting pause.");
+            flow.RequestPauseFromDeviceLoss();
+            return;
+        }
+
         // Find the PlayerInput still bound to this user and remove it. Destroying
         // the GameObject is what makes PlayerInputManager fire onPlayerLeft.
         foreach (var player in PlayerInput.all)

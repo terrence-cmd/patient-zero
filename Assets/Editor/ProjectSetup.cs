@@ -147,7 +147,17 @@ public static class ProjectSetup
 
         EditorSceneManager.SaveScene(scene, MainScenePath);
 
-        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(MainScenePath, true) };
+        // Keep Boot/Title ahead of Main when the match-flow spine is present.
+        // GameFlowSetup owns the full ordered list; this only ensures Main stays registered.
+        var scenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
+        string boot = "Assets/Scenes/Boot.unity";
+        string title = "Assets/Scenes/Title.unity";
+        if (File.Exists(boot))
+            scenes.Add(new EditorBuildSettingsScene(boot, true));
+        if (File.Exists(title))
+            scenes.Add(new EditorBuildSettingsScene(title, true));
+        scenes.Add(new EditorBuildSettingsScene(MainScenePath, true));
+        EditorBuildSettings.scenes = scenes.ToArray();
 
         Debug.Log($"[ProjectSetup] Player prefab ({PlayerPrefabPath}) and scene ({MainScenePath}) created; " +
                   "scene registered in build settings.");
